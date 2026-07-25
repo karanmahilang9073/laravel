@@ -1,8 +1,19 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
 
 <h2>Edit Student</h2>
+
+@if ($errors->any())
+    <div style="color: red;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form action="/students/{{$student->id}}" method="POST">
     @csrf
     @method('PUT')

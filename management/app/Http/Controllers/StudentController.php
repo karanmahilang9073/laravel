@@ -37,6 +37,11 @@ class StudentController extends Controller
     }
 
     public function edit($id, Request $request) {
+        $student = Student::findOrFail($id);
+        return view('students.edit', compact('student'));
+    }
+
+    public function update($id, Request $request){
         $request->validate([
             'name' => 'required|min:3|max:50',
             'email' => 'required|email|unique:students,email,' .$id,
@@ -44,9 +49,7 @@ class StudentController extends Controller
             'age' => 'required|integer|min:18|max:60',
             'course' => 'required|max:100'
         ]);
-
         $student = Student::findOrFail($id);
-
         $student->update([
             'name' => $request->name,
             'email' => $request->email,

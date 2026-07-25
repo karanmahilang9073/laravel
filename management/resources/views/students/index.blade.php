@@ -10,7 +10,7 @@
     <p>Age: {{$student->age}}</p>
     <p>Course: {{$student->course}}</p>
     <a href="/students/{{$student->id}}/edit">Edit</a>
-    <form action="/students/{{$student->id}}">
+    <form action="/students/{{$student->id}}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit">Delete</button>
