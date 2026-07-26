@@ -14,7 +14,7 @@
     </div>
 @endif
 
-<form action="/students/{{$student->id}}" method="POST">
+<form action="{{route('students.update', $student->id)}}" method="POST">
     @csrf
     @method('PUT')
     <div>

@@ -13,7 +13,7 @@
     </div>
 @endif
 
-<form action="/students" method="POST">
+<form action="{route('students.store')}" method="POST">
     @csrf
     <div>
         <label for="">Name</label>

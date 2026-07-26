@@ -9,8 +9,9 @@
     <p>Phone: {{$student->phone}}</p>
     <p>Age: {{$student->age}}</p>
     <p>Course: {{$student->course}}</p>
-    <a href="/students/{{$student->id}}/edit">Edit</a>
-    <form action="/students/{{$student->id}}" method="POST">
+    <a href="{{route('students.edit', $student->id)}}">Edit</a>
+
+    <form action="{{route('students.destroy', $student->id)}}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit">Delete</button>
