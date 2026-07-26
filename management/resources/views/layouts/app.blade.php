@@ -6,7 +6,7 @@
     <title>Student Hub</title>
 </head>
 <body>
-    <h1>student management system</h1>
+    @include('partials.navbar')
     <hr>
     @yield('content')
 </body>
