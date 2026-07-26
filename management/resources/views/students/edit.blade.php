@@ -39,7 +39,13 @@
     <br>
     <div>
         <label for="">Course</label><br>
-        <input type="text" name="course" value="{{$student->course}}">
+        <select name="course_id" id="">
+            @foreach($courses as $course)
+                <option value="{{$course->id}}" {{$student->course_id == $course->id ? 'selected' : ''}}>
+                    {{$course->name}}
+                </option>
+            @endforeach
+        </select>
     </div>
     <br>
     <x-button type="submit">Update student</x-button>

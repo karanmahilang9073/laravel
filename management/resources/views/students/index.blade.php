@@ -8,7 +8,7 @@
     <p>Email: {{$student->email}}</p>
     <p>Phone: {{$student->phone}}</p>
     <p>Age: {{$student->age}}</p>
-    <p>Course: {{$student->course}}</p>
+    <p>Course: {{$student->course->name ?? 'N/A'}}</p>
     <a href="{{route('students.edit', $student->id)}}">Edit</a>
 
     <form action="{{route('students.destroy', $student->id)}}" method="POST">

@@ -37,7 +37,14 @@
     <br>
     <div>
         <label for="">Course</label>
-        <input type="Text" name="course">
+        <select name="course_id">
+            <option value="">Select course</option>
+            @foreach($courses as $course)
+                <option value="{{$course->id}}">
+                    {{$course->name}}
+                </option>
+            @endforeach
+        </select>
     </div>
     <br>
     <x-button type="submit">Save Student</x-button>
