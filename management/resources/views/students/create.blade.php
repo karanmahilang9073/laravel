@@ -40,6 +40,6 @@
         <input type="Text" name="course">
     </div>
     <br>
-    <button type="submit">Save</button>
+    <x-button>Save Student</x-button>
 </form>
 @endsection

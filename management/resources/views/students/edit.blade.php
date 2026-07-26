@@ -42,6 +42,6 @@
         <input type="text" name="course" value="{{$student->course}}">
     </div>
     <br>
-    <button type="submit">Update student</button>
+    <x-button>Update student</x-button>
 </form>
 @endsection
