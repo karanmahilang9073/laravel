@@ -36,20 +36,18 @@ class StudentController extends Controller
         return view('students.create');
     }
 
-    public function edit($id, Request $request) {
-        $student = Student::findOrFail($id);
+    public function edit(Student $student) {
         return view('students.edit', compact('student'));
     }
 
-    public function update($id, Request $request){
+    public function update( Request $request, Student $student){
         $request->validate([
             'name' => 'required|min:3|max:50',
-            'email' => 'required|email|unique:students,email,' .$id,
+            'email' => 'required|email|unique:students,email,' .$student->id,
             'phone' => 'required|digits:10',
             'age' => 'required|integer|min:18|max:60',
             'course' => 'required|max:100'
         ]);
-        $student = Student::findOrFail($id);
         $student->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -57,12 +55,11 @@ class StudentController extends Controller
             'age' => $request->age,
             'course' => $request->course,
         ]);
-        return redirect('/students');
+        return redirect()->route('students.index');
     }
 
-    public function destroy($id){
-        $student = Student::findOrFail($id);
+    public function destroy(Student $student){
         $student->delete();
-        return redirect('/students');
+        return redirect()->route('students.index');
     }
 }
