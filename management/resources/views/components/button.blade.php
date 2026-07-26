@@ -1,3 +1,7 @@
-<button type="submit">
+@props([
+    'type' => 'button'
+])
+
+<button type="{{$type}}">
     {{$slot}}
 </button>
