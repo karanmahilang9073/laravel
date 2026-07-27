@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STDHUB</title>
-</head>
-<body>
-    <h1>Welcome to student Hub system</h1>
-    <p>this is my first laravel blade view</p>
-</body>
-</html>
+@extends('layouts.app')
+
+@section('content')
+<div class="flex flex-col items-center justify-center text-center py-20">
+    <h1 class="text-4xl font-bold text-gray-800">Welcome to Student Hub System</h1>
+    <p class="text-gray-600 mt-3 text-lg">This is my first Laravel Project</p>
+</div>
+@endsection
