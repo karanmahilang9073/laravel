@@ -18,5 +18,6 @@
     </form>
     <hr>
 @endforeach
+{{$students->links()}}
 
 @endsection
