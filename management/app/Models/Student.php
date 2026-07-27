@@ -12,7 +12,8 @@ class Student extends Model
         'email',
         'phone',
         'age',
-        'course_id'
+        'course_id',
+        'photo'
     ];
 
     public function course(): BelongsTo {

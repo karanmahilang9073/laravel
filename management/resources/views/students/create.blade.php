@@ -13,7 +13,7 @@
     </div>
 @endif
 
-<form action="{{route('students.store')}}" method="POST">
+<form action="{{route('students.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div>
         <label for="">Name</label>
@@ -45,6 +45,11 @@
                 </option>
             @endforeach
         </select>
+    </div>
+    <br>
+    <div>
+        <label for="">Photo</label>
+        <input type="file" name="photo">
     </div>
     <br>
     <x-button type="submit">Save Student</x-button>

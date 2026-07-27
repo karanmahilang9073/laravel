@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use  Illuminate\Support\Facades\Storage;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\Course;
@@ -20,8 +21,14 @@ class StudentController extends Controller
             'email' => 'required|email|unique:students,email',
             'phone' => 'required|digits:10',
             'age' => 'required|integer|min:18|max:60',
-            'course_id' => 'required|exists:courses,id' 
+            'course_id' => 'required|exists:courses,id',
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
+
+        $photoPath = null;
+        if($request->hasFile('photo')){
+            $photoPath = $request->file('photo')->store('students', 'public');
+        }
 
         Student::create([
             'name' => $request->name,
@@ -29,6 +36,7 @@ class StudentController extends Controller
             'phone' => $request->phone,
             'age' => $request->age,
             'course_id' => $request->course_id,
+            'photo' => $photoPath,
         ]);
         return redirect('/students');
     }
