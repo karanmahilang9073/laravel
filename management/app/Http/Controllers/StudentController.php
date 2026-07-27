@@ -6,15 +6,21 @@ use  Illuminate\Support\Facades\Storage;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class StudentController extends Controller
 {
+    use AuthorizesRequests;
     public function index() {
+        $this->authorize('viewAny', Student::class);
         $students = Student::paginate(5);
         return view('students.index', compact('students'));
     }
 
     public function store(Request $request) {
+
+        $this->authorize('create', Student::class);
 
         $request->validate([
             'name' => 'required|min:3|max:50',
@@ -42,16 +48,19 @@ class StudentController extends Controller
     }
 
     public function create() {
+        $this->authorize('create', Student::class);
         $courses = Course::all();
         return view('students.create', compact('courses'));
     }
 
     public function edit(Student $student) {
+        $this->authorize('update', $student);
         $courses = Course::all();
         return view('students.edit', compact('student', 'courses'));
     }
 
     public function update( Request $request, Student $student){
+        $this->authorize('update', $student);
         $request->validate([
             'name' => 'required|min:3|max:50',
             'email' => 'required|email|unique:students,email,' .$student->id,
@@ -70,6 +79,7 @@ class StudentController extends Controller
     }
 
     public function destroy(Student $student){
+        $this->authorize('delete', $student);
         $student->delete();
         return redirect()->route('students.index');
     }
