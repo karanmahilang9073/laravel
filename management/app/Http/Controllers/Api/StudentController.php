@@ -12,7 +12,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-        return StudentResource::collection($student);
+        return StudentResource::collection($students);
     }
 
     public function store(Request $request)
