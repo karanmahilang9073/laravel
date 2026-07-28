@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Http\Resources\StudentResource;
 
 class StudentController extends Controller
 {
     public function index()
     {
         $students = Student::all();
-        return response()->json($students);
+        return StudentResource::collection($student);
     }
 
     public function store(Request $request)
@@ -24,12 +25,12 @@ class StudentController extends Controller
             'course_id' => 'required|exists:courses,id',
         ]);
         $student = Student::create($validate);
-        return response()->json($student, 201);
+        return (new StudentResource($student))->response()->setStatusCode(201);
     }
 
     public function show(Student $student)
     {
-        return response()->json($student);
+        return new StudentResource($student);
     }
 
     public function update(Request $request, Student $student)
@@ -42,7 +43,7 @@ class StudentController extends Controller
             'course_id' => 'required|exists:courses,id'
         ]);
         $student->update($validate);
-        return response()->json($student);
+        return new StudentResource($student);
     }
 
     public function destroy(Student $student)
