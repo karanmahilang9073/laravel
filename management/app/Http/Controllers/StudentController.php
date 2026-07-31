@@ -14,7 +14,13 @@ class StudentController extends Controller
     use AuthorizesRequests;
     public function index() {
         $this->authorize('viewAny', Student::class);
-        $students = Student::paginate(5);
+
+        $search = request('search');
+        $students = Student::when($search, function($query) use ($search) {
+            $query->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+        })->paginate(5);
+
         return view('students.index', compact('students'));
     }
 

@@ -4,6 +4,10 @@
 <div class="max-w-3xl mx-auto mt-10">
     <h2 class="text-3xl font-bold text-gray-800 mb-6">Student List</h2>
 
+    <form action="{{route('students.index')}}" method="GET" class="mb-4">
+        <input type="text" name="search" value="{{request('search')}}" placeholder="search by name or email" class="form-control">
+    </form>
+
     @foreach($students as $student)
         <div class="bg-white rounded-2xl shadow-md p-6 mb-4 flex gap-6 items-start">
             @if($student->photo)
