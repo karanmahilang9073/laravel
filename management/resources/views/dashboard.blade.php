@@ -1,20 +1,28 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-bold text-2xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-lg rounded-2xl border border-gray-100">
-                <div class="p-8 text-gray-700">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                        Welcome back 👋
-                    </h3>
-                    <p>{{ __("You're logged in!") }}</p>
-                </div>
-            </div>
+@section('content')
+<div class="max-w-7xl mx-auto px-4 py-8">
+
+    <div class="text-center mb-10">
+        <span class="text-blue-600 font-semibold text-sm uppercase tracking-wide">
+            Student Hub
+        </span>
+
+        <h1 class="text-5xl font-extrabold text-gray-900 mt-2">
+            Welcome to Student Management System
+        </h1>
+
+        <p class="text-gray-600 text-lg mt-4">
+            Manage students, courses, and records in one simple, organized dashboard.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-gray-500 text-sm">Total Students</h2>
+            <p class="text-3xl font-bold mt-2">{{ $totalStudents }}</p>
         </div>
     </div>
-</x-app-layout>
+
+</div>
+@endsection
